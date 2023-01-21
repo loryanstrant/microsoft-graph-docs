@@ -1,7 +1,7 @@
 ---
 title: "Enroll in update management by the Windows Update for Business deployment service"
 description: "Enroll a device in update management so that you can use the Windows Update for Business deployment service to manage content delivered from Windows Update to that device."
-author: "aarononeal"
+author: "Ryan-K-Williams"
 ms.localizationpriority: medium
 ms.prod: "w10"
 doc_type: conceptualPageType
@@ -11,11 +11,11 @@ doc_type: conceptualPageType
 
 When you enroll a device in update management by the Windows Update for Business deployment service, you can use the deployment service to manage content delivered from Windows Update to that device. You can enroll a device in update management by update category.
 
-Today, the deployment service supports enrollment in management of Windows 10 feature updates. At this time, the deployment service does not require enrollment in management of Windows 10 quality updates in order to deploy expedited quality updates.
+Today, the deployment service supports enrollment in management of Windows 10/11 feature updates and driver updates. At this time, the deployment service does not require enrollment in management of Windows 10/11 quality updates in order to deploy expedited quality updates.
 
 ## Enroll the device in update management
 
-When you enroll a device in management for a certain update category, the deployment service becomes the authority for updates of that category coming from Windows Update. As a result, devices do not receive updates of that category from Windows Update until you deploy an update using the deployment service by assigning it to a [deployment](windowsupdates-deployments.md). Devices are automatically registered with the service when enrolled in management by the service (i.e. an [azureADDevice](/graph/api/resources/windowsupdates-azureaddevice) object is automatically created if it does not already exist).
+When you enroll a device in management for a certain update category, the deployment service becomes the authority for updates of that category coming from Windows Update. As a result, devices do not receive updates of that category from Windows Update until you deploy an update using the deployment service by assigning it to a [deployment](windowsupdates-deployments.md). Devices are automatically registered with the service when enrolled in management by the service (i.e. an [azureADDevice](/graph/api/resources/windowsupdates-azureaddevice) object is automatically created if it does not already exist). For driver enrollment, see [enroll devices in driver management](windowsupdates-manage-driver-updates#Step-1:-Enroll-devices-in-driver-management).
 
 ### Request
 
@@ -28,15 +28,15 @@ Content-Type: application/json
   "assets": [
     {
       "@odata.type": "#microsoft.graph.windowsUpdates.azureADDevice",
-      "id": "String (identifier)"
+      "id": "fb95f07d-9e73-411d-99ab-7eca3a5122b1"
     },
     {
       "@odata.type": "#microsoft.graph.windowsUpdates.azureADDevice",
-      "id": "String (identifier)"
+      "id": "fb95f07d-9e73-411d-99ab-7eca3a5122b2"
     },
     {
       "@odata.type": "#microsoft.graph.windowsUpdates.azureADDevice",
-      "id": "String (identifier)"
+      "id": "fb95f07d-9e73-411d-99ab-7eca3a5122b3"
     }
   ]
 }
@@ -68,7 +68,7 @@ Content-Type: application/json
 {
   "value": {
     "@odata.type": "#microsoft.graph.windowsUpdates.azureADDevice",
-    "id": "983f03cd-03cd-983f-cd03-3f98cd033f98",
+    "id": "fb95f07d-9e73-411d-99ab-7eca3a5122b1",
     "errors": [],
     "enrollments": [
       {
@@ -95,7 +95,7 @@ Content-Type: application/json
   "assets": [
     {
       "@odata.type": "#microsoft.graph.windowsUpdates.azureADDevice",
-      "id": "String (identifier)"
+      "id": "fb95f07d-9e73-411d-99ab-7eca3a5122b1"
     }
   ]
 }
@@ -112,7 +112,7 @@ You can unregister a device from the service completely by deleting the device o
 ### Request
 
 ``` http
-DELETE https://graph.microsoft.com/beta/admin/windows/updates/updatableAssets/{azureADDeviceId}
+DELETE https://graph.microsoft.com/beta/admin/windows/updates/updatableAssets/fb95f07d-9e73-411d-99ab-7eca3a5122b1
 ```
 
 ### Response
